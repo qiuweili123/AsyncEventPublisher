@@ -1,0 +1,12 @@
+# Eclipse project files
+.classpath
+.project
+.gradle/
+.settings/
+bin/
+build/
+target/
+logs/
+
+# Mac useless file
+.DS_Store
