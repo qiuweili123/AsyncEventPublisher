@@ -1,9 +1,18 @@
 # Spring Boot Async Event Publisher
 
 ![](https://img.shields.io/travis/hp1982/AsyncEventPublisher.svg)
-![](https://img.shields.io/github/tag/hp1982/AsyncEventPublisher.svg)
-![](https://img.shields.io/github/release/hp1982/AsyncEventPublisher.svg)
-![](https://img.shields.io/github/issues/hp1982/AsyncEventPublisher.svg)
 
+[========]
+                    
+### Async Event Publisher Sequence Diagram
+                    
+```seq
+Andrew->China: Says Hello 
+Note right of China: China thinks\nabout it 
+China-->Andrew: How are you? 
+Andrew->>China: I am good thanks!
+```
+
+### End
 
 
