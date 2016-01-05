@@ -1,5 +1,7 @@
 package huipeng.daoapp.io.api;
 
+import java.util.concurrent.Callable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,5 +22,18 @@ public class MessageEndPoint {
     messageService.say(message);
     messageService.asyncSay(message);
     return message;
+  }
+
+  @RequestMapping(value = "/API/call/{message}", method = RequestMethod.GET,
+      produces = "application/json; charset=UTF-8")
+  public Callable<String> call(@PathVariable String message) {
+    messageService.say(message);
+    return new Callable<String>() {
+      @Override
+      public String call() throws Exception {
+        messageService.say(message);
+        return message;
+      }
+    };
   }
 }

@@ -1,6 +1,7 @@
 package huipeng.daoapp.io;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.not;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -40,9 +41,9 @@ public class AsyncEventPublisherApplicationTests {
   }
 
   @Test
-  public void testHome() throws Exception {
+  public void testSay() throws Exception {
     this.mvc.perform(get("/API/say/hello")).andExpect(status().isOk())
-        .andExpect(content().string(containsString("hello")));
+        .andExpect(content().string(equalTo("hello")));
     this.outputCapture.expect(containsString("Send Event"));
     this.outputCapture.expect(containsString("Thread will wait 3s"));
     this.outputCapture.expect(containsString("Wake up"));
@@ -50,5 +51,12 @@ public class AsyncEventPublisherApplicationTests {
     this.outputCapture.expect(containsString("Event Done"));
     this.outputCapture.expect(containsString("Send Async Event"));
     this.outputCapture.expect(not(containsString("Async Event Done")));
+  }
+
+  @Test
+  public void testCall() throws Exception {
+    this.mvc.perform(get("/API/call/hello")).andExpect(status().isOk())
+        .andExpect(content().string(equalTo("")));
+
   }
 }
