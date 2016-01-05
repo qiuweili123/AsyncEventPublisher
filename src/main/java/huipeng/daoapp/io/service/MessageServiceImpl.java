@@ -14,25 +14,26 @@ public class MessageServiceImpl implements MessageService {
   @Autowired
   private MessageEventPublisher messageEventPublisher;
 
-  private void somniloquy(String message) {
-    logger.debug(new StringBuilder("somniloquy will wait 3s").toString());
+  @Override
+  public void somniloquy(String message) {
+    logger.debug(new StringBuilder("Thread will wait 3s").toString());
     try {
       Thread.sleep(1000 * 3); // 1000 milliseconds is one second.
     } catch (InterruptedException ex) {
       Thread.currentThread().interrupt();
     }
-    logger.debug(new StringBuilder("wake up").toString());
+    logger.debug(new StringBuilder("Wake up").toString());
     logger.debug(message);
   }
 
   @Override
   public void asyncSay(String message) {
-    messageEventPublisher.sendMessage(message);
+    messageEventPublisher.asyncSendMessage(message);
   }
 
   @Override
   public void say(String message) {
-    this.somniloquy(message);
+    messageEventPublisher.sendMessage(message);
   }
 
 }

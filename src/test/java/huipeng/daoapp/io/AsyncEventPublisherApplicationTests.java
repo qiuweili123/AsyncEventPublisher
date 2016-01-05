@@ -43,11 +43,12 @@ public class AsyncEventPublisherApplicationTests {
   public void testHome() throws Exception {
     this.mvc.perform(get("/API/say/hello")).andExpect(status().isOk())
         .andExpect(content().string(containsString("hello")));
-    this.outputCapture.expect(containsString("somniloquy will wait 3s"));
-    this.outputCapture.expect(containsString("wake up"));
-    this.outputCapture.expect(containsString("hello"));
     this.outputCapture.expect(containsString("Send Event"));
-    this.outputCapture.expect(containsString("Process Event"));
-    this.outputCapture.expect(not(containsString("Done Event")));
+    this.outputCapture.expect(containsString("Thread will wait 3s"));
+    this.outputCapture.expect(containsString("Wake up"));
+    this.outputCapture.expect(containsString("hello"));
+    this.outputCapture.expect(containsString("Event Done"));
+    this.outputCapture.expect(containsString("Send Async Event"));
+    this.outputCapture.expect(not(containsString("Async Event Done")));
   }
 }

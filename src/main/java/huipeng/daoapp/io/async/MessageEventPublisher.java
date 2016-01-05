@@ -17,10 +17,18 @@ public class MessageEventPublisher implements ApplicationEventPublisherAware {
     this.publisher = applicationEventPublisher;
   }
 
-  @Async
   public void sendMessage(String message) {
     MessageEvent event = new MessageEvent(this, message);
     logger.debug(new StringBuilder("Send Event").toString());
     publisher.publishEvent(event);
+    logger.debug(new StringBuilder("Event Done").toString());
+  }
+
+  @Async
+  public void asyncSendMessage(String message) {
+    MessageEvent event = new MessageEvent(this, message);
+    logger.debug(new StringBuilder("Send Async Event").toString());
+    publisher.publishEvent(event);
+    logger.debug(new StringBuilder("Async Event Done").toString());
   }
 }
