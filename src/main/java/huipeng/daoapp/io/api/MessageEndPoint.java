@@ -31,7 +31,7 @@ public class MessageEndPoint {
     return new Callable<String>() {
       @Override
       public String call() throws Exception {
-        messageService.say(message);
+        messageService.asyncSay(message);
         return message;
       }
     };
