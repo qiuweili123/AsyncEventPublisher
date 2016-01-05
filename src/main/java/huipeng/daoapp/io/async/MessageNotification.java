@@ -21,5 +21,6 @@ public class MessageNotification {
   public void processMessageEvent(MessageEvent event) throws IOException {
     logger.debug(new StringBuilder("Process Event").toString());
     messageService.say(event.getMessage());
+    logger.debug(new StringBuilder("Done Event").toString());
   }
 }
